@@ -15,3 +15,7 @@
 * Testing with git on Windows. Previously, all repos were pushed from Unix-based VM. This is an alternative way to push the repo to Github.
 * Read and understand more about the EOL used in Windows and Mac OS/Linux. This is important thing to know as I plan to work this file for cross-platform (Windows and Linux).
 ---
+14/1/22
+* Add .py file and make it into one class.
+* Next feature: Export to DB (SQlite or MySQL)
+---
