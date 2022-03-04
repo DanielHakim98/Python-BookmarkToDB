@@ -19,3 +19,7 @@
 * Add .py file and make it into one class.
 * Next feature: Export to DB (SQlite or MySQL)
 ---
+4/3/22
+* Add input request to allow more flexibility for the source filepath and save filepath.
+* Next feature: Export to DB (SQlite or MySQL)
+---

@@ -7,9 +7,13 @@ from IPython.display import display
 import numpy as np
 from urllib.request import Request,urlopen
 from urllib.error import URLError, HTTPError
+import os
+
 
 class bookmark_saver(BeautifulSoup):
     def __init__(self, fname):
+        if not os.path.isfile(fname):
+            raise FileNotFoundError("File path is not valid")
         self.file = codecs.open(fname,'r','utf-8').read()
         self.soup = BeautifulSoup(self.file,'lxml')
         self.bookmarks_raw=self.soup.findAll("a")
@@ -43,8 +47,15 @@ class bookmark_saver(BeautifulSoup):
         return record    
     
     def export_to_csv(self,path):
-       self.df.to_csv(path)
+        if not path.endswith('.csv'):
+            raise ValueError("File path doesn't end with .csv")
+        self.df.to_csv(path)
 
-bkmk_1 = bookmark_saver("C:\\DiskC_Data Stars\\mozilla_bookmarks\\latestBookmark.html")
-bkmk_1.export_to_csv('C:\\DiskC_Data Stars\\mozilla_bookmarks\\bookmark_table.csv')
+#Source filepath (in .html) ---> "C:\\DiskC_Data Stars\\mozilla_bookmarks\\latestBookmark.html"
+#Save filepath (in .csv)    ---> "C:\\DiskC_Data Stars\\mozilla_bookmarks\\bookmark_table.csv"
 
+
+source_path = input("Please enter filepath for targeted html file: ")
+bkmk_1 = bookmark_saver(source_path)
+save_path = input("Please enter filename or filepath to save extracted data into csv file: ")
+bkmk_1.export_to_csv(save_path)
