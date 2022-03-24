@@ -11,10 +11,13 @@ class bookmark_saver(BeautifulSoup):
             raise FileNotFoundError("File path is not valid")
         self.file = codecs.open(fname,'r','utf-8').read()
         self.soup = BeautifulSoup(self.file,'lxml')
-        self.bookmarks_raw=self.soup.findAll("a")
+        self.bookmarks_raw = self.soup.findAll("a")
         self.bookmarks = list(self.bookmarks_raw)
         self.delect_icon_att()
         self.df = self.create_df()
+
+    def __str__(self):
+        return str(self.df)
 
     def delect_icon_att(self):
         for item in self.bookmarks:
@@ -32,7 +35,7 @@ class bookmark_saver(BeautifulSoup):
 
     def dict_to_record(self,item):
         record={}
-        record['Title']=str(item.contents[0])
+        record['Title'] = str(item.contents[0])
         record.update(item.attrs)
         for key in record:
             if key == 'add_date' or key=='last_modified':
