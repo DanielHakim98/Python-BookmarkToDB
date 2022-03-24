@@ -22,4 +22,4 @@ bkmk_1 = bookmark_saver(source_path)
 bkmk_1.export_to_csv(save_path)
 
 
-#df_to_db(bkmk_1.df)
+df_to_db(bkmk_1)
